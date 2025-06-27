@@ -50,6 +50,7 @@ swin_73var: &73var
   global_stds_path:  '/pscratch/sd/p/pharring/73var-6hourly/staging/stats/global_stds.npy'
   time_diff_means_path: '/pscratch/sd/p/pharring/73var-6hourly/staging/stats/time_diff_means.npy'
   time_diff_stds_path: '/pscratch/sd/p/pharring/73var-6hourly/staging/stats/time_diff_stds.npy'
+  stats_path: '/pscratch/sd/s/shas1693/data/weather/era5/latlon_025deg_hdf5/stats/stats_v1.0.h5'
   add_orography: False
   orography_path: '/pscratch/sd/p/pharring/73var-6hourly/staging/invariants/orog.nc'
   add_landmask: False
