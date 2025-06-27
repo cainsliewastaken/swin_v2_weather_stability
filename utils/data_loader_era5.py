@@ -52,8 +52,10 @@ class GetDataset(Dataset):
         self.n_out_channels = params.n_out_channels
         self.n_future = params.n_future
         self.normalize = True
-        self.means = np.load(params.global_means_path)[0,self.in_channels]
-        self.stds = np.load(params.global_stds_path)[0,self.in_channels]
+        with h5py.File(params.stats_path, "r") as f:
+            self.means = np.array(f['global_mean'])[self.in_channels]
+            self.stds = np.array(f['global_std'])[self.in_channels]
+            self.temp_diff_stds = np.array(f['temp_diff_std'])[self.in_channels]
         self._get_files_stats()
         if self.params.add_zenith:
             # additional static fields needed for coszen
