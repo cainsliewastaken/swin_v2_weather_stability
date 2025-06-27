@@ -12,3 +12,6 @@ class Forward_Euler_Step(nn.Module):
 
     def forward(self, inp, coszen=None):
         return inp + self.dt_tens * self.model(inp)
+
+def get_normalized_temporal_diff_std(params):
+    return params.temp_diff_stds/params.stds
