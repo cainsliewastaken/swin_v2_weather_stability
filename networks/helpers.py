@@ -3,6 +3,7 @@ import torch.nn as nn
 from functools import partial
 # networks
 from networks.swinv2_global import swinv2net
+from networks.step_functions import Forward_Euler_Step, get_normalized_temporal_diff_std
 
 class SingleStepWrapper(nn.Module):
     """Wrapper for training a single step into the future"""
@@ -45,6 +46,12 @@ def get_model(params):
         model = partial(swinv2net)
     else:
         raise Exception(f"model type {params.nettype} not implemented")
+
+    if params.step_func == 'f_euler'
+        dt_temsor = get_normalized_temporal_diff_std(params)
+        model = Forward_Euler_Step(params, model, dt_tensor)
+    elif params.step_func != None:
+        raise Exception(f"step function type {params.nettype} not implemented")        
 
     # wrap into Multi-Step if requested
     if params.n_future > 0:
