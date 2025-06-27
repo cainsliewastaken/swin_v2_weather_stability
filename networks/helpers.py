@@ -4,6 +4,17 @@ from functools import partial
 # networks
 from networks.swinv2_global import swinv2net
 
+class Forward_Euler_Step(nn.Module):
+    """Wrapper for the forward Euler integration constraint.
+    Note, the input and output need to be within the same space"""
+    def __init__(self, params, model_handle, dt_tensor = 1):
+        super(Forward_Euler_Step, self).__init__()
+        self.model = model_handle(params)
+        self.dt_tens = dt_tensor
+
+    def forward(self, inp, coszen=None):
+        return inp + self.dt_tens * self.model(inp)
+
 class SingleStepWrapper(nn.Module):
     """Wrapper for training a single step into the future"""
     def __init__(self, params, model_handle):
