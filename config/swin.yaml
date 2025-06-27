@@ -2,6 +2,7 @@
 swin_73var: &73var
   #swin hyperparams
   nettype: 'swin'
+  step_func: 'f_euler'
   embed_dim: 768
   depth: 24
   patch_size: 4
@@ -14,6 +15,7 @@ swin_73var: &73var
   activation_ckpt: false
   checkpointing: false
   residual: False
+
 
   # general
   log_to_screen: true
